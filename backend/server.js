@@ -8,10 +8,19 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// Allowed domain Vercel dan localhost
+const allowedOrigins = [
+  'https://google-maps-crud.vercel.app',
+  'http://localhost:5173'
+];
+
+
 // Middleware
 app.use(cors({
-    origin: 'http://localhost:5173', // Customize with frontend port
-    methods: ['GET', 'POST', 'PUT', 'DELETE']
+  origin: allowedOrigins, // Gunakan array untuk multi-domain
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
   }));
 app.use(bodyParser.json());
 

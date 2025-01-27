@@ -3,7 +3,7 @@ const Location = require('../models/Location');
 
 const router = express.Router();
 
-// GET Semua Lokasi
+// GET All Location
 router.get('/', async (req, res) => {
   try {
     const locations = await Location.find();
@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// POST Untuk Tambah Lokasi
+// POST (For Create Location)
 router.post('/', async (req, res) => {
   const { name, address, latitude, longitude } = req.body;
 
@@ -31,7 +31,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-// PUT Untuk Update Lokasi
+// PUT (For Update Location)
 router.put('/:id', async (req, res) => {
   const { name, address, latitude, longitude } = req.body;
 
@@ -52,7 +52,7 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-// DELETE Untuk Hapus Lokasi
+// DELETE (For Delete Location)
 router.delete('/:id', async (req, res) => {
   try {
     const deletedLocation = await Location.findByIdAndDelete(req.params.id);

@@ -4,6 +4,7 @@ import { getLocations, addLocation, updateLocation, deleteLocation } from '../ap
 import LocationForm from '../components/LocationForm';
 import LocationList from '../components/LocationList';
 import Map from '../components/Map';
+import { GOOGLE_MAPS_API_KEY } from '../constants';
 
 const Home = () => {
   const [locations, setLocations] = useState([]);
@@ -19,16 +20,16 @@ const Home = () => {
   };
 
   const handleAddOrUpdate = async (location) => {
-    console.log('Data sebelum geocoding:', location); // Debugging log
+    
   
     try {
-      // Lakukan geocoding untuk mendapatkan latitude dan longitude berdasarkan alamat
+      // Do geoconding to get latitude and longitude based on address
       const response = await axios.get(
         `https://maps.googleapis.com/maps/api/geocode/json`,
         {
           params: {
             address: location.address,
-            key: import.meta.env.VITE_GOOGLE_MAPS_API_KEY, // Pastikan API key benar
+            key: GOOGLE_MAPS_API_KEY, // Make sure the API key is correct
           },
         }
       );
@@ -40,16 +41,16 @@ const Home = () => {
         return;
       }
   
-      // Tambahkan latitude dan longitude ke data lokasi
+      // Added latitude and longitude to location data
       const newLocation = {
         ...location,
         latitude: geometry.lat,
         longitude: geometry.lng,
       };
   
-      console.log('Data yang dikirim ke backend:', newLocation); // Debugging log
+     
   
-      // Tentukan apakah sedang menambahkan atau mengedit lokasi
+      // Determine whether adding or editing location
       if (editingLocation) {
         await updateLocation(editingLocation._id, newLocation);
         setEditingLocation(null);
@@ -57,7 +58,7 @@ const Home = () => {
         await addLocation(newLocation);
       }
   
-      // Refresh daftar lokasi
+      // Refresh location list
       loadLocations();
     } catch (error) {
       console.error('Error saat geocoding:', error);

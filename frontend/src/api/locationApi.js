@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api/locations'; // ganti sesuai backend Anda
+const API_URL = 'http://localhost:5000/api/locations'; // change this with your Backend API URL
 
 export const getLocations = async () => axios.get(API_URL);
 export const addLocation = async (data) => axios.post(API_URL, data);

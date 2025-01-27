@@ -4,11 +4,11 @@ const LocationForm = ({ onSubmit, initialData }) => {
   const [name, setName] = useState(initialData?.name || '');
   const [address, setAddress] = useState(initialData?.address || '');
 
-  // Update state ketika initialData berubah
+  // Update state when initialData changes
   useEffect(() => {
     if (initialData) {
-      setName(initialData.name || '');
-      setAddress(initialData.address || '');
+      setName(initialData.name ?? '');
+      setAddress(initialData.address ?? '');
     }
   }, [initialData]);
 

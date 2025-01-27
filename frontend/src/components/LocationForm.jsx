@@ -39,8 +39,8 @@ const LocationForm = ({ onSubmit, initialData }) => {
         className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
         placeholder="Masukkan Nama Lokasi"
       />
-       <p className="text-sm text-gray-500 mt-1">
-    *Contoh: Monas (Monumen Nasional)
+       <p className="italic text-sm text-gray-500 mt-1">
+    * Contoh: Monas (Monumen Nasional)
   </p>
     </div>
     <div className="mb-4">
@@ -54,8 +54,8 @@ const LocationForm = ({ onSubmit, initialData }) => {
         className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
         placeholder="Masukkan Alamat"
       />
-       <p className="text-sm text-gray-500 mt-1">
-    *Contoh: Merdeka Square, Jakarta, Jalan Lapangan Monas, Gambir, Central Jakarta City, Jakarta 10110
+       <p className="italic text-sm text-gray-500 mt-1">
+    * Contoh: Merdeka Square, Jakarta, Jalan Lapangan Monas, Gambir, Central Jakarta City, Jakarta 10110
   </p>
     </div>
     <button

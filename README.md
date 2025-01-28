@@ -1,4 +1,4 @@
-# Aplikasi Manajemen Lokasi dengan Google Maps 🌍
+# Aplikasi CRUD Menggunakan Google Map API 🌍
 
 [![React](https://img.shields.io/badge/React-18.2-blue)](https://react.dev/)
 [![Node.js](https://img.shields.io/badge/Node.js-18.x-green)](https://nodejs.org/)
@@ -34,13 +34,11 @@ Aplikasi web untuk manajemen lokasi dengan integrasi peta Google Maps secara rea
 - Tailwind CSS
 - Google Maps JavaScript API
 - Axios
-- React Hot Toast
 
 **Backend:**
 - Node.js
 - Express.js
 - MongoDB
-- Mongoose
 
 ## Instalasi 💅
 
@@ -78,6 +76,32 @@ cd ../frontend
 npm install
 ```
 
+#### Install Tailwind CSS
+1. Install Tailwind CSS dan plugin Vite:
+   ```bash
+   npm install tailwindcss @tailwindcss/vite
+   ```
+2. Tambahkan plugin Tailwind ke konfigurasi Vite:
+   ```javascript
+   // vite.config.js
+   import { defineConfig } from 'vite';
+   import tailwindcss from '@tailwindcss/vite';
+
+   export default defineConfig({
+     plugins: [
+       tailwindcss(),
+     ],
+   });
+   ```
+3. Import Tailwind CSS ke file CSS utama Anda:
+   ```css
+   @import "tailwindcss";
+   ```
+4. Jalankan aplikasi:
+   ```bash
+   npm run dev
+   ```
+
 Buat file `.env`:
 ```env
 VITE_GOOGLE_MAPS_API_KEY=your_api_key_here
@@ -93,13 +117,10 @@ npm run dev
 ### Google Maps API
 Aktifkan layanan berikut di Google Cloud Console:
 - Maps JavaScript API
-- Places API
-- Geocoding API
 
 Buat API Key dengan restriksi:
 - **Tipe Aplikasi:** Web
 - **Domain:** `localhost:5173/*`
-
 
 ### Database
 - MongoDB akan membuat database `location-manager` otomatis
@@ -138,7 +159,7 @@ google-maps-crud/
 ## Troubleshooting 🚨
 
 ### Peta Tidak Muncul:
-- Pastikan API Key dan Map ID valid
+- Pastikan API Key valid
 - Cek kuota API di Google Cloud Console
 - Verifikasi billing account aktif
 
@@ -160,15 +181,8 @@ app.use(cors({
 }));
 ```
 
-### Git Conflict:
-```bash
-# Jika ada error saat push
-git pull origin main --allow-unrelated-histories
-git push -f origin main
-```
 
 ## Lisensi 📄
 Proyek ini dilisensikan di bawah MIT License - Lihat file LICENSE untuk detail lengkap.
-
 
 Jika menemukan bug atau ingin berkontribusi, silakan buka issue.

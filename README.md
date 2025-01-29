@@ -7,7 +7,7 @@
 
 Aplikasi web untuk manajemen lokasi dengan integrasi peta Google Maps secara real-time.
 
-![Demo Aplikasi](./SS.png)
+![Demo Aplikasi](./Mockup.png)
 
 ## Daftar Isi 📚
 - [Fitur Utama](#fitur-utama-%e2%9c%a8)

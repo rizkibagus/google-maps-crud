@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 const LocationForm = ({ onSubmit, initialData }) => {
   const [name, setName] = useState(initialData?.name || '');
   const [address, setAddress] = useState(initialData?.address || '');
+  const [loading, setLoading] = useState(false); // Added state loading
 
   // Update state when initialData changes
   useEffect(() => {
@@ -12,10 +13,14 @@ const LocationForm = ({ onSubmit, initialData }) => {
     }
   }, [initialData]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!name || !address) return alert('Nama dan Alamat wajib diisi!');
-    onSubmit({ name, address });
+
+    setLoading(true); //  Set loading when submit form
+    await onSubmit({ name, address });
+    setLoading(false); //  after finish submit, loading false
+
     setName('');
     setAddress('');
   };
@@ -59,11 +64,21 @@ const LocationForm = ({ onSubmit, initialData }) => {
   </p>
     </div>
     <button
-      type="submit"
-      className="w-full py-3 text-white bg-blue-600 rounded-lg font-medium hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 transition-all"
-    >
-      {initialData ? "Perbarui" : "Simpan"}
-    </button>
+        type="submit"
+        disabled={loading} // Disable button when loading
+        className={`w-full py-3 text-white rounded-lg font-medium transition-all flex items-center justify-center gap-2 ${
+          loading ? "bg-gray-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"
+        }`}
+      >
+        {loading ? (
+          <>
+            <div className="animate-spin h-5 w-5 border-2 border-white border-t-transparent rounded-full"></div>
+            Memproses...
+          </>
+        ) : (
+          initialData ? "Perbarui" : "Simpan"
+        )}
+      </button>
   </form>
   );
 };

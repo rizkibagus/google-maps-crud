@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Import CSS Toast
 
 const LocationForm = ({ onSubmit, initialData }) => {
   const [name, setName] = useState(initialData?.name || '');
@@ -15,14 +17,25 @@ const LocationForm = ({ onSubmit, initialData }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!name || !address) return alert('Nama dan Alamat wajib diisi!');
-
+    // Validasi input
+    if (!name.trim()) {
+      toast.error('Nama lokasi tidak boleh kosong!'); // toast error
+      return;
+    }
+    if (!address.trim()) {
+      toast.error('Alamat wajib diisi!'); // toast error
+      return;
+    }
     setLoading(true); //  Set loading when submit form
-    await onSubmit({ name, address });
-    setLoading(false); //  after finish submit, loading false
-
-    setName('');
-    setAddress('');
+    try {
+      await onSubmit({ name, address });
+      setName('');
+      setAddress('');
+      toast.success('Lokasi berhasil disimpan!'); // toast success
+    } catch (error) {
+      toast.error('Gagal menyimpan lokasi!'); // toast error
+    }
+    setLoading(false);
   };
 
   return (
